@@ -19,11 +19,11 @@ cat <<EOL > "${BASE_NAME}.h"
 # define ${BASE_NAME}_H
 
 # include <stdio.h>
-# include "libft/src/libft.h"
+# include "libft/src/libft.h"  // Incluir la librería libft desde src
 
-int ft_main(int c);
+int ft_main(int c); // Declaración de la función ft_main
 
-#endif
+#endif // ${BASE_NAME}_H
 EOL
 
 # Crear el archivo main.c
@@ -85,10 +85,10 @@ fclean: clean
 
 re: fclean all
 
-todo: Z_To-Do_Z/To-Do.py
-	@python3 Z_To-Do_Z/To-Do.py
+run: Z_To-Do_Z/To-Do.py
+	python3 Z_To-Do_Z/To-Do.py
 
-.PHONY: all clean fclean re libft todo
+.PHONY: all clean fclean re libft run
 EOL
 
 # Crear el archivo .gitignore en la raíz del proyecto
@@ -113,20 +113,22 @@ def main():
         with open('Z_To-Do_Z/To-Do.txt', 'r') as file:
             tasks = file.readlines()
             for task in tasks:
-                print(f"·   {task.strip()}")
+                print(f"Ejecutando: {task.strip()}")
     except FileNotFoundError:
-        print("Crea el archivo [Z_To-Do_Z/To-Do.txt]")
+        print("El archivo To-Do.txt no fue encontrado.")
 
 if __name__ == '__main__':
     main()
 EOL
 
 # Crear el archivo To-Do.txt dentro de Z_To-Do_Z vacío
-cat << EOF > Z_To-Do_Z/To-Do.txt
-Empezar con ${BASE_NAME}.
-EOF
+touch Z_To-Do_Z/To-Do.txt
 
 # Cambiar permisos para el script de Python
 chmod +x Z_To-Do_Z/To-Do.py
 
+# Mostrar mensaje de éxito
 echo "Estructura de proyecto creada con éxito."
+
+# Eliminar el script actual
+rm -- "$0"
