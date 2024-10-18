@@ -19,11 +19,11 @@ cat <<EOL > "${BASE_NAME}.h"
 # define ${BASE_NAME}_H
 
 # include <stdio.h>
-# include "libft/src/libft.h"  // Incluir la librería libft desde src
+# include "libft/src/libft.h"
 
-int ft_main(int c); // Declaración de la función ft_main
+int ft_main(int c);
 
-#endif // ${BASE_NAME}_H
+#endif
 EOL
 
 # Crear el archivo main.c
@@ -32,8 +32,8 @@ cat <<EOL > src/main.c
 
 int main()
 {
-    printf("Aquí\n");
-    return (0);
+	printf("Aquí\n");
+	return (0);
 }
 EOL
 
@@ -109,16 +109,16 @@ cat <<EOL > Z_To-Do_Z/To-Do.py
 #!/usr/bin/env python3
 # To-Do list
 def main():
-    try:
-        with open('Z_To-Do_Z/To-Do.txt', 'r') as file:
-            tasks = file.readlines()
-            for task in tasks:
-                print(f"Ejecutando: {task.strip()}")
-    except FileNotFoundError:
-        print("El archivo To-Do.txt no fue encontrado.")
+	try:
+		with open('Z_To-Do_Z/To-Do.txt', 'r') as file:
+			tasks = file.readlines()
+			for task in tasks:
+				print(f"·   {task.strip()}")
+	except FileNotFoundError:
+		print("Crea el archivo [Z_To-Do_Z/To-Do.txt].")
 
 if __name__ == '__main__':
-    main()
+	main()
 EOL
 
 # Crear el archivo To-Do.txt dentro de Z_To-Do_Z vacío
