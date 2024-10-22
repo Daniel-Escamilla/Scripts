@@ -130,3 +130,4 @@ echo "Estructura de proyecto creada con éxito."
 
 # Eliminar el script actual
 rm -- "$0"
+
