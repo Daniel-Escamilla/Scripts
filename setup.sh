@@ -52,10 +52,10 @@ SRC_DIR = src
 # Archivos fuente
 SRC = main.c
 
-# Directorio de archivos objeto
-OBJDIR = ${BASE_NAME}_objects
 # Archivos objeto generados a partir de los archivos fuente
 OBJS = \$(addprefix \$(OBJDIR)/, \$(SRC:.c=.o))
+# Directorio de archivos objeto
+OBJDIR = ${BASE_NAME}_objects
 
 # Directorio de la libft
 LIBFT_DIR = ./libft
@@ -64,23 +64,21 @@ LIBFT = \$(LIBFT_DIR)/libft.a
 # Reglas
 all: \$(OBJDIR) libft \$(NAME)
 
-\$(OBJDIR):
-	@mkdir -p \$@
-
 \$(NAME): \$(OBJS) \$(LIBFT)
-	\$(CC) \$(CFLAGS) -o \$@ \$^ \$(LIBFT)
+	\$(CC) \$(CFLAGS) -o \$@ \$(OBJS) \$(LIBFT)
 
-\$(OBJDIR)/%.o: \$(SRC_DIR)/%.c | \$(OBJDIR)
+\$(OBJDIR)/%.o: %.c | \$(OBJDIR)
 	\$(CC) \$(CFLAGS) -c \$< -o \$@
-
+\$(OBJDIR):
+	@mkdir -p \$(OBJDIR)/src/*
 libft:
 	@make -sC \$(LIBFT_DIR) --no-print-directory
 
 clean:
-	rm -rf \$(OBJDIR)
+	@rm -rf \$(OBJDIR)
 
 fclean: clean
-	rm -f \$(NAME)
+	@rm -f \$(NAME)
 	@make -sC \$(LIBFT_DIR) fclean
 
 re: fclean all
